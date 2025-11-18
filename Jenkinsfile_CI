@@ -63,14 +63,17 @@ pipeline {
             }
         }
         stage('NPM Execute') {
+            parallel {
             steps {
                 dir('api') {
                 sh 'npm start' 
                 }
                 dir('client') {
                 sh 'npm start' 
+                    }
                 }
             }
         }
     }
 }
+

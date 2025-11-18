@@ -62,5 +62,15 @@ pipeline {
                sh 'trivy fs --format=table -o fs-report.html .'
             }
         }
+        stage('NPM Execute') {
+            steps {
+                dir('api') {
+                sh 'npm start' 
+                }
+                dir('client') {
+                sh 'npm start' 
+                }
+            }
+        }
     }
 }

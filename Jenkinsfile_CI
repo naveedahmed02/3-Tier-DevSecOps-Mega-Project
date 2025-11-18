@@ -62,32 +62,6 @@ pipeline {
                sh 'trivy fs --format=table -o fs-report.html .'
             }
         }
-        stage('NPM Execute') {
-            parallel {
-                stage('API') {
-                    steps {
-                        dir('api') {
-                            sh 'npm start'
-                        }
-                    }
-                }
-                stage('Client') {
-                    steps {
-                        dir('client') {
-                            sh 'npm start'
-                        }
-                    }
-                }
-            }
-        }
-        post {
-            success {
-                echo "Pipeline finished successfully!"
-            }
-            failure {
-                echo "Pipeline failed!"
-            }
-        }
     }
 }
 
